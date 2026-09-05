@@ -3,3 +3,4 @@ requests
 astral
 pillow
 matplotlib
+pytz
