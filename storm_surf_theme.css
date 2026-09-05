@@ -1,0 +1,61 @@
+/* Storm Surf Theme — Devo’s Surf Fishing – Dog Beach */
+
+body {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+
+.block-container {
+    padding-top: 2rem;
+}
+
+.storm-card {
+    background-color: #161b22;
+    border: 1px solid #1f6feb;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 0 12px rgba(31, 111, 235, 0.25);
+}
+
+.storm-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #58a6ff;
+    margin-bottom: 8px;
+}
+
+.storm-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e6edf3;
+}
+
+.storm-badge-go {
+    background-color: #1f6feb;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.storm-badge-caution {
+    background-color: #f0ad4e;
+    color: black;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.storm-badge-nogo {
+    background-color: #d9534f;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.wave-divider {
+    border-bottom: 2px solid #1f6feb;
+    margin: 20px 0;
+}
