@@ -19,7 +19,7 @@ def fetch_tide_predictions():
         f"?product=predictions&application=devo_surf_fishing"
         f"&begin_date={today}&end_date={today}"
         f"&datum=MLLW&station={STATION_ID}"
-        f"&time_zone=lst_ldt&units=english&interval=6&format=json"
+        f"&time_zone=lst_ldt&units=english&interval=hilo&format=json"
     )
 
     try:
