@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+from solunar_tools import get_solunar_data
 
 def storm_card(title, value):
     st.markdown(
@@ -33,28 +34,22 @@ def render():
     st.markdown("<div class='wave-divider'></div>", unsafe_allow_html=True)
 
     # --- Overview Header ---
-    st.markdown(
-        "<h2 style='color:#58a6ff;'>Storm Surf Overview</h2>",
-        unsafe_allow_html=True
-    )
+    st.markdown("<h2 style='color:#58a6ff;'>Storm Surf Overview</h2>", unsafe_allow_html=True)
 
-    # --- Time Card ---
+    # --- Current Time ---
     import pytz
     pst = pytz.timezone("America/Los_Angeles")
     now = datetime.now(pst).strftime("%A, %B %d • %I:%M %p")
     storm_card("Current Time", now)
     st.markdown("<div class='wave-divider'></div>", unsafe_allow_html=True)
 
-    # --- Placeholder Values (will be replaced with real engine data) ---
+    # --- Get real solunar data ---
+    data = get_solunar_data()
+
+    # --- Surf placeholders (we will replace these later with real NOAA data) ---
     breakers = "2.5 ft"
     energy = "112 kJ"
     surf_temp = "57°F"
-    tide_stage = "Incoming"
-    moon_phase = "Waning Gibbous"
-    major_window = "10:45 AM – 12:15 PM"
-    minor_window = "5:20 PM – 6:05 PM"
-    fishability = "GOOD"
-    go_status = "GO"
 
     # --- Card Grid Layout ---
     col1, col2, col3 = st.columns(3)
@@ -67,23 +62,26 @@ def render():
 
     col4, col5, col6 = st.columns(3)
     with col4:
-        storm_card("Tide Stage", tide_stage)
+        storm_card("Tide Stage", data["tide_stage"])
     with col5:
-        storm_card("Moon Phase", moon_phase)
+        storm_card("Moon Phase", data["moon_phase"])
     with col6:
-        storm_card("Fishability", fishability)
+        storm_card("Solunar Score", data["solunar_score"])
 
     st.markdown("<div class='wave-divider'></div>", unsafe_allow_html=True)
 
     # --- Bite Windows ---
     col7, col8 = st.columns(2)
     with col7:
-        storm_card("Major Bite Window", major_window)
+        storm_card("Major Bite Window", data["major_window"])
     with col8:
-        storm_card("Minor Bite Window", minor_window)
+        storm_card("Minor Bite Window", data["minor_window"])
 
     st.markdown("<div class='wave-divider'></div>", unsafe_allow_html=True)
 
     # --- GO / NO-GO Badge ---
     st.markdown("<h3 style='color:#58a6ff;'>Fishing Status</h3>", unsafe_allow_html=True)
+
+    # Simple logic for now — we will improve this later
+    go_status = "GO" if data["solunar_score"] >= 60 else "CAUTION"
     storm_badge(go_status, go_status)
