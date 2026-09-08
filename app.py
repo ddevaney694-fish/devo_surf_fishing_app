@@ -26,7 +26,7 @@ if choice == "Overview":
     import overview_page as page
 elif choice == "Solunar":
     import solunar_page as page
- elif choice == "Tides":
-    import tides_page as page   
+elif choice == "Tides":
+    import tides_page as page
 
 page.render()
