@@ -48,6 +48,12 @@ def render():
     solunar = get_solunar_data()
     surf = get_surf_conditions()
 
+    # --- Buoy Info ---
+    st.markdown("<h3 style='color:#58a6ff;'>Buoy Source</h3>", unsafe_allow_html=True)
+    storm_card("Buoy Used", surf["buoy_source"])
+    storm_card("Buoy Timestamp", surf["buoy_time"])
+    st.markdown("<div class='wave-divider'></div>", unsafe_allow_html=True)
+
     # --- Surf conditions ---
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -79,7 +85,6 @@ def render():
     # --- Fishing status ---
     st.markdown("<h3 style='color:#58a6ff;'>Fishing Status</h3>", unsafe_allow_html=True)
 
-    # Combine surf fishability and solunar score
     combined_score = int((surf["fishability_score"] + solunar["solunar_score"]) / 2)
 
     if combined_score >= 70:
