@@ -91,7 +91,8 @@ def get_tide_summary():
             "current_stage": "Unknown",
         }
 
-    # Find the closest prediction to 'now'
+   # If points exist, find closest tide
+if points:
     closest = min(points, key=lambda p: abs(p["time"] - now))
     idx = points.index(closest)
 
@@ -106,3 +107,10 @@ def get_tide_summary():
         "current_height": height_now,
         "current_stage": stage,
     }
+
+# Fallback if NOAA returned nothing
+return {
+    "points": [],
+    "current_height": None,
+    "current_stage": "Unknown",
+}
