@@ -92,20 +92,20 @@ def get_tide_summary():
         }
 
    # If points exist, find closest tide
-if points:
-    closest = min(points, key=lambda p: abs(p["time"] - now))
-    idx = points.index(closest)
+   if points:
+       closest = min(points, key=lambda p: abs(p["time"] - now))
+       idx = points.index(closest)
 
-    height_now = closest["height_ft"]
-    height_prev = points[idx - 1]["height_ft"] if idx > 0 else None
-    height_next = points[idx + 1]["height_ft"] if idx < len(points) - 1 else None
+       height_now = closest["height_ft"]
+       height_prev = points[idx - 1]["height_ft"] if idx > 0 else None
+       height_next = points[idx + 1]["height_ft"] if idx < len(points) - 1 else None
 
-    stage = classify_tide_stage(height_now, height_prev, height_next)
+       stage = classify_tide_stage(height_now, height_prev, height_next)
 
-    return {
-        "points": points,
-        "current_height": height_now,
-        "current_stage": stage,
+       return {
+           "points": points,
+           "current_height": height_now,
+           "current_stage": stage,
     }
 
 # Fallback if NOAA returned nothing
