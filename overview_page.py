@@ -39,9 +39,10 @@ def render():
     )
 
     # --- Time Card ---
-    now = datetime.now().strftime("%A, %B %d • %I:%M %p")
+    import pytz
+    pst = pytz.timezone("America/Los_Angeles")
+    now = datetime.now(pst).strftime("%A, %B %d • %I:%M %p")
     storm_card("Current Time", now)
-
     st.markdown("<div class='wave-divider'></div>", unsafe_allow_html=True)
 
     # --- Placeholder Values (will be replaced with real engine data) ---
