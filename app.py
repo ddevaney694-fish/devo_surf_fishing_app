@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+import tides_page
 
 # Load Storm Surf theme
 with open("storm_surf_theme.css") as f:
@@ -14,6 +15,7 @@ st.set_page_config(
 pages = {
     "Overview": "overview",
     "Solunar": "solunar",
+  "Tides": "tides",  
 }
 
 st.sidebar.title("Devo’s Surf Fishing – Dog Beach")
@@ -24,5 +26,7 @@ if choice == "Overview":
     import overview_page as page
 elif choice == "Solunar":
     import solunar_page as page
+ elif choice == "Tides":
+    import tides_page as page   
 
 page.render()
