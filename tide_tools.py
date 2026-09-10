@@ -114,3 +114,29 @@ return {
     "current_height": None,
     "current_stage": "Unknown",
 }
+
+import pandas as pd
+from datetime import datetime, timedelta
+import math
+
+def get_tide_series():
+    """
+    Returns a synthetic tide curve for the next 24 hours.
+    Replace this later with real NOAA API data.
+    """
+
+    now = datetime.now()
+    hours = [now + timedelta(hours=i) for i in range(0, 24)]
+
+    # Synthetic tide curve (smooth sine wave)
+    tide_heights = [
+        3.4 + 2.0 * math.sin((i / 24) * 2 * math.pi)
+        for i in range(24)
+    ]
+
+    df = pd.DataFrame({
+        "time": hours,
+        "height_ft": tide_heights
+    })
+
+    return df
